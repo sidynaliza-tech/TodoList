@@ -1,38 +1,20 @@
-# To-Do List App (Android)
+# To-Do List Application (Android)
 
-A clean, modern, and lightweight To-Do List application built for Android. This project demonstrates how to implement local data persistence using the Room database, manage UI efficiently with ViewBinding, and handle background threads safely via Kotlin Coroutines.
+Сучасний Android-додаток для керування повсякденними завданнями (органайзер), розроблений на мові **Kotlin** із використанням сучасного архітектурного стеку **Android Jetpack**.
 
----
+##  Реалізований функціонал та фічі
 
-## Features
+У ході лабораторної роботи додаток було суттєво модернізовано та додано наступні можливості:
+*  **Локальне збереження даних** — повна інтеграція з локальною базою даних **Room Database** (SQLite). Дані не зникають після перезапуску додатка.
+*  **Закріплення завдань (Pin-to-Top)** — за допомогою **довгого кліку** на завдання, воно автоматично закріплюється та переміщується у самий верх списку.
+*  **Свайп для видалення (Swipe-to-Delete)** — реалізовано сучасні жести. Завдання можна видалити, просто змахнувши його вліво або вправо за екран.
+*  **Розумний колірний пріоритет** — додаток автоматично аналізує текст. Якщо завдання містить знак `!` або слова *"терміново"*, *"важливо"*, текст підсвічується червоним кольором.
+*  **Візуальний ефект виконання** — при відмітці чекбокса завдання автоматично закреслюється і стає сірим.
+*  **Фонова асинхронність** — усі важкі операції з базою даних (запис, видалення, оновлення) повністю ізольовані у фоновому потоці за допомогою **Kotlin Coroutines** (`Dispatchers.IO`), що забезпечує плавність роботи UI-інтерфейсу.
 
-* **Add Tasks:** Quickly add new entries via a clean input field.
-* **Persistent Storage:** Tasks are saved in a local SQLite database using **Room**, meaning your data is safe even after closing or restarting the app.
-* **Complete/Incomplete States:** Fully functional checkboxes that update the task status in real-time.
-* **Delete Tasks:** A dedicated button on each item to permanently remove it from the list.
-* **Optimized List Updates:** Uses `ListAdapter` and `DiffUtil` for smooth animations and efficient UI rendering.
-
----
-
-## Tech Stack & Architecture
-
+##  Стек технологій
 * **Language:** Kotlin
-* **UI Layout:** XML (ConstraintLayout, RecyclerView, CardView)
-* **ViewBinding:** For safe and clean binding of UI components without `findViewById`.
-* **Room Database:** Modern abstraction layer over SQLite for offline data storage.
-* **Kotlin Coroutines:** Asynchronous handling of database transactions (Insert, Update, Delete) on background threads (`Dispatchers.IO`) to keep the UI smooth.
-
----
-
-## Project Structure
-
-```text
-com.example.todolist
-│
-├── todo/                  # Database Layer
-│    ├── Task.kt           # Data Entity (Room Table)
-│    ├── TaskDao.kt        # Data Access Object (SQL Queries)
-│    └── TaskDatabase.kt   # Room Database Client (Singleton)
-│
-├── MainActivity.kt        # UI Controller & Coroutine Scopes
-└── TaskAdapter.kt         # Custom RecyclerView Adapter (ListAdapter)
+* **UI Architecture:** ViewBinding, RecyclerView, ListAdapter, DiffUtil, ItemTouchHelper
+* **Database:** Room (Entity, DAO, RoomDatabase)
+* **Asynchronous:** Kotlin Coroutines (LifecycleScope, Dispatchers)
+* **Build System:** Gradle (Kotlin DSL)
